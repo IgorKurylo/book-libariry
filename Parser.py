@@ -19,16 +19,16 @@ class Parser:
         if input_str.lower() == Parser.exit:
             return None, Command.EXIT
         try:
-            if Parser.long_space in input_str:
-                input_data = input_str.split(Parser.long_space)
+            if Parser.space in input_str or Parser.long_space in input_str:
+                input_data = input_str.replace(Parser.long_space, Parser.space).split()
                 if len(input_data) == 4 or len(input_data) == 3:
                     return input_data, Command.INPUT
-            else:
-                if Parser.space in input_str:
-                    query_data = input_str.split(Parser.space)
-                    return query_data, Command.QUERY
+            if Parser.space in input_str and Parser.answer in input_str:
+                query_data = input_str.split(Parser.space)
+                return query_data, Command.QUERY
+
         except ValueError:
-            print("Input is not correct")
+            print("Input is incorrect")
 
     @staticmethod
     def parse_data(data):

@@ -7,7 +7,8 @@ class Subscription:
     def add_book(self, book_id):
         if len(self.books) <= 10:
             self.books.append(book_id)
-        raise OverflowError("Subscription already have 10 books")
+        else:
+            raise OverflowError("Subscription already have 10 books")
 
     def remove_book(self, book_id):
         for bid in self.books:

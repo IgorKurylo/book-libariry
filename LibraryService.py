@@ -9,6 +9,12 @@ class LibraryService:
                 return index
         return -1
 
+    @staticmethod
+    def find_book_subscription(subscription_id, sub_book_mapping):
+        for book in sub_book_mapping:
+            if sub_book_mapping[book].id == subscription_id:
+                return book
+        return -1
     # def take_book(self, data, mapper, tree):
     #     print(data)
     #
