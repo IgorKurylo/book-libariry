@@ -1,40 +1,49 @@
+import typing
+
+
 class LibraryService:
     def __init__(self):
         pass
 
     @staticmethod
-    def find_subscription(subscription_id, subscriptions):
+    def find_customer(subscription_id, subscriptions):
         for index, sub in enumerate(subscriptions):
             if sub.id == subscription_id:
                 return index
         return -1
 
     @staticmethod
-    def find_book_subscription(subscription_id, sub_book_mapping):
-        for book in sub_book_mapping:
-            if sub_book_mapping[book].id == subscription_id:
+    def find_customer_book(customer_id, customer_book):
+        for book in customer_book:
+            if customer_book[book].id == customer_id:
                 return book
         return -1
-    # def take_book(self, data, mapper, tree):
-    #     print(data)
-    #
-    # def return_book(data, mapper, tree):
-    #     print(data)
-    #
-    # def add_subscription(self, data, mapper, tree):
-    #     print(data)
-    #
-    # def remove_subscription(self, data, mapper, tree):
-    #     print(data)
-    #
-    @staticmethod
-    def select_books(data, mapper_books):
-        print(data)
 
     @staticmethod
-    def select_subscription(data, mapper_subscription):
-        print(data)
+    def add_customer(customer, customers: typing.List):
+        customers.append(customer)
 
     @staticmethod
-    def select_max_books(mapper_books, mapper_subscription):
+    def remove_customer(index, customers: typing.List):
+        customers.pop(index)
+
+    @staticmethod
+    def add_book_customer(customers, index, book):
+        customers[index].add_book(book)
+
+
+    @staticmethod
+    def select_books(data, books_map):
+        books = books_map[data]
+        print(",".join(books))
+
+    @staticmethod
+    def select_customer(data, customers_map):
+        print(customers_map[data].id)
+
+    @staticmethod
+    def select_max_books(mapper_books):
         subscription_list = []
+        max_book = len(mapper_books[list(mapper_books.keys())[0]])
+        for sub in mapper_books:
+            print(sub)

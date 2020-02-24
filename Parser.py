@@ -1,5 +1,5 @@
 from CommandEnum import Command
-from Subscription import Subscription
+from Customer import Subscription
 
 
 class Parser:
@@ -8,8 +8,8 @@ class Parser:
     exit = "exit"
     add = "+"
     delete = "-"
-    answer = "?"
-    all = "! ?"
+    query = "?"
+    all = "!"
 
     def __init__(self):
         pass
@@ -23,7 +23,7 @@ class Parser:
                 input_data = input_str.replace(Parser.long_space, Parser.space).split()
                 if len(input_data) == 4 or len(input_data) == 3:
                     return input_data, Command.INPUT
-            if Parser.space in input_str and Parser.answer in input_str:
+            if Parser.space in input_str and Parser.query in input_str:
                 query_data = input_str.split(Parser.space)
                 return query_data, Command.QUERY
 
@@ -43,10 +43,10 @@ class Parser:
 
     @staticmethod
     def parse_query(query, data):
-        if query == Parser.answer:
+        if query == Parser.query:
             if data.isdigit():
                 return data, Command.SELECT_BOOKS
-            else:
+            elif Parser.all is not data:
                 return data, Command.SELECT_SUBSCRIPTION
-        if query == Parser.all:
-            return None, Command.MAX_BOOKS_HOLDERS
+            else:
+                return None, Command.MAX_BOOKS_HOLDERS
