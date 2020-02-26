@@ -16,8 +16,6 @@ def print_data(data):
 
 if __name__ == '__main__':
     customers: typing.List[Customer] = list()
-    # subscriptionsBooksMapping: typing.Dict[str, typing.Any] = dict()  # mapping for books and subscription
-    # bookSubscriptionMapping: typing.Dict[int, typing.List] = dict()  # mapping for subscription and list of books
     hash_mapper = HashMapper()
     print_input("[Welcome to Library]", "\n")
     while True:
@@ -32,14 +30,12 @@ if __name__ == '__main__':
                 index = LibraryService.find_customer(info["id"], customers)
                 if index != -1:
                     try:
-                        # TODO: check if book is availabale
-                        LibraryService.add_book_customer(customers, index, info["book"])
-                        subscriptionsBooksMapping[info["book"]] = customers[index]
-                        if info["id"] not in bookSubscriptionMapping:
-                            bookSubscriptionMapping[info["id"]] = customers[index].books[:]
+                        if hash_mapper.book_is_available(info["book"]):
+                            LibraryService.add_book_customer(customers, index, info["book"])
+                            hash_mapper.add_book(customers[index], info["book"])
+                            print("Book {0} add to {1} customer".format(info["book"], info["id"]))
                         else:
-                            bookSubscriptionMapping[info["id"]].append(info["book"])
-                        print("Book {0} add to {1} subscription".format(info["book"], info["id"]))
+                            print("Book {0} is not available".format(info["book"]))
                     except OverflowError as ex:
                         print_input(ex, "\n")
                 else:
@@ -49,10 +45,8 @@ if __name__ == '__main__':
                 print_input(input_str, "\n")
                 index = LibraryService.find_customer(info["id"], customers)
                 if index != -1:
-                    customers[index].remove_book(info["book"])
-                    if info["book"] in subscriptionsBooksMapping and info["id"] in bookSubscriptionMapping:
-                        del subscriptionsBooksMapping[info["book"]]
-                        bookSubscriptionMapping[info["id"]].remove(info["book"])
+                    LibraryService.remove_book_customer(customers, index, info["book"])
+                    if hash_mapper.return_book(info["id"], info["book"]):
                         print("Book {0} returned".format(info["book"]))
                     else:
                         print("Book {0} is not exists".format(info["book"]))
@@ -79,15 +73,15 @@ if __name__ == '__main__':
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
                 print_input("Customer {0} hold the next books".format(data[1]), " ")
-                LibraryService.select_books(query_data, bookSubscriptionMapping)
+                LibraryService.select_books(query_data, hash_mapper.customer_books())
             if cmd == Command.SELECT_SUBSCRIPTION:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
                 print_input("The book {0} hold  Customer".format(data[1]), " ")
-                LibraryService.select_customer(query_data, subscriptionsBooksMapping)
+                LibraryService.select_customer(query_data, hash_mapper.book_customer())
             if cmd == Command.MAX_BOOKS_HOLDERS:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
-                LibraryService.select_max_books(bookSubscriptionMapping)
+                LibraryService.select_max_books(hash_mapper.customer_books())
         if cmd == Command.EXIT:
             break

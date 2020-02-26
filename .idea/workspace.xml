@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b7a233a-9aa0-4f98-8479-6caa859069d8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HashMapper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CommandEnum.py" beforeDir="false" afterPath="$PROJECT_DIR$/CommandEnum.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HashMapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/HashMapper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library.py" beforeDir="false" afterPath="$PROJECT_DIR$/Library.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryService.py" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryService.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NodeId.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Subscription.py" beforeDir="false" afterPath="$PROJECT_DIR$/Customer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

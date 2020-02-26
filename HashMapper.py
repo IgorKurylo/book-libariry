@@ -21,10 +21,13 @@ class HashMapper:
         else:
             self._book_customer[customer.customer_id].append(book_id)
 
-    def remove_book(self, customer_id, book_id):
+    def return_book(self, customer_id, book_id):
         if book_id in self._book_customer and customer_id in self._customer_books:
             del self._book_customer[book_id]
             self._customer_books[customer_id].remove(book_id)
+            return True
+        else:
+            return False
 
     def remove_customer(self, customer_id):
         if customer_id in self._customer_books:

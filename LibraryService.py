@@ -31,6 +31,9 @@ class LibraryService:
     def add_book_customer(customers, index, book):
         customers[index].add_book(book)
 
+    @staticmethod
+    def remove_book_customer(customers, index, book):
+        customers[index].remove_book(book)
 
     @staticmethod
     def select_books(data, books_map):
