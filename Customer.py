@@ -1,11 +1,13 @@
 class Customer:
+    MAX_BOOKS = 10
+
     def __init__(self, customer_id, last_name):
         self.customer_id = customer_id
         self.last_name = last_name
         self.books = []
 
     def add_book(self, book_id):
-        if len(self.books) <= 10:
+        if len(self.books) <= Customer.MAX_BOOKS:
             self.books.append(book_id)
         else:
             raise OverflowError("Customer already have 10 books")
@@ -14,4 +16,3 @@ class Customer:
         for bid in self.books:
             if bid == book_id:
                 self.books.remove(bid)
-

@@ -17,9 +17,9 @@ class HashMapper:
     def add_book(self, customer, book_id):
         self._book_customer[book_id] = customer
         if customer.customer_id not in self._customer_books:
-            self._book_customer[customer.customer_id] = customer.books[:]
+            self._customer_books[customer.customer_id] = customer.books[:]
         else:
-            self._book_customer[customer.customer_id].append(book_id)
+            self._customer_books[customer.customer_id].append(book_id)
 
     def return_book(self, customer_id, book_id):
         if book_id in self._book_customer and customer_id in self._customer_books:

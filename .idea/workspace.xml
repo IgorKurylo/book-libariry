@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="2b7a233a-9aa0-4f98-8479-6caa859069d8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Customer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Customer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HashMapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/HashMapper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library.py" beforeDir="false" afterPath="$PROJECT_DIR$/Library.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LibraryService.py" beforeDir="false" afterPath="$PROJECT_DIR$/LibraryService.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +28,7 @@
   <component name="ProjectId" id="1XJ9Tav3OLptZr8LH0CH8DaAAvy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/Fornova/hotelsCodeParser" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/IAI/IAI%20Integrated%20Network%20Monitoring" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
@@ -87,7 +89,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581689639363</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="adding to git ignore&#10;adding hash mapper class">
+      <created>1582699134475</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582699134475</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -105,10 +114,23 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adding to git ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding to git ignore" />
+    <MESSAGE value="adding to git ignore&#10;adding hash mapper class" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding to git ignore&#10;adding hash mapper class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Library.py</url>
+          <line>86</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Parser.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -119,9 +141,10 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="info.id in bookSubscriptionMapping" />
-        <watch expression="subscriptionsBooksMapping" />
-        <watch expression="len(mapper_books[list(mapper_books.keys())])" language="Python" />
+        <watch expression="customers" />
+        <watch expression=" book_id not in self._book_customer" />
+        <watch expression="hash_mapper.customer_books" />
+        <watch expression="len(mapper_books[list(mapper_books.keys())[0]])" />
       </configuration>
     </watches-manager>
   </component>

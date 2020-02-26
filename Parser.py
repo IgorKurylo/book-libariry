@@ -1,5 +1,5 @@
 from CommandEnum import Command
-from Customer import Subscription
+from Customer import Customer
 
 
 class Parser:
@@ -37,16 +37,16 @@ class Parser:
         if data[len(data) - 1] == Parser.delete:
             return dict({'last_name': data[0], 'id': data[1], 'book': data[2]}), Command.RETURN_BOOK
         if data[0] == Parser.add:
-            return Subscription(data[2], data[1]), Command.ADD_SUBSCRIPTION
+            return Customer(data[2], data[1]), Command.ADD_CUSTOMER
         if data[0] == Parser.delete:
-            return Subscription(data[2], data[1]), Command.REMOVE_SUBSCRIPTION
+            return Customer(data[2], data[1]), Command.REMOVE_CUSTOMER
 
     @staticmethod
     def parse_query(query, data):
-        if query == Parser.query:
+        if data is Parser.all:
+            return None, Command.MAX_BOOKS_HOLDERS
+        elif query == Parser.query:
             if data.isdigit():
                 return data, Command.SELECT_BOOKS
             elif Parser.all is not data:
-                return data, Command.SELECT_SUBSCRIPTION
-            else:
-                return None, Command.MAX_BOOKS_HOLDERS
+                return data, Command.SELECT_CUSTOMER

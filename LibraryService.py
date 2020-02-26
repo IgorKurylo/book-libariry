@@ -1,14 +1,16 @@
 import typing
 
+import Customer
+
 
 class LibraryService:
     def __init__(self):
         pass
 
     @staticmethod
-    def find_customer(subscription_id, subscriptions):
-        for index, sub in enumerate(subscriptions):
-            if sub.id == subscription_id:
+    def find_customer(customer_id, customers):
+        for index, sub in enumerate(customers):
+            if sub.customer_id == customer_id:
                 return index
         return -1
 
@@ -45,8 +47,11 @@ class LibraryService:
         print(customers_map[data].id)
 
     @staticmethod
-    def select_max_books(mapper_books):
-        subscription_list = []
-        max_book = len(mapper_books[list(mapper_books.keys())[0]])
-        for sub in mapper_books:
-            print(sub)
+    def select_max_books(mapper_customer_books: typing.Dict):
+        customer_hold_count_books: typing.List = list()
+        max_books = len(mapper_customer_books[list(mapper_customer_books.keys())[0]])
+        for customer in mapper_customer_books:
+            if max_books < len(mapper_customer_books[customer]):
+                max_books = len(mapper_customer_books[customer])
+                customer_hold_count_books.append(customer)
+        return customer_hold_count_books

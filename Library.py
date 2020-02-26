@@ -1,3 +1,5 @@
+import colors
+
 from HashMapper import HashMapper
 from LibraryService import LibraryService
 from Parser import Parser
@@ -17,9 +19,9 @@ def print_data(data):
 if __name__ == '__main__':
     customers: typing.List[Customer] = list()
     hash_mapper = HashMapper()
-    print_input("[Welcome to Library]", "\n")
+    print(colors.fgcolor.OKBLUE, "[Welcome to Library]", "\n")
     while True:
-        print_input("[Write your query, for finish press 'exit' ]", "\n")
+        print(colors.fgcolor.WARNING, "[Write your query,  press  exit  for finish ]", "\n")
         input_str = input()
         data, cmd = Parser.parse_input(input_str)
         if cmd == Command.INPUT:
@@ -56,32 +58,34 @@ if __name__ == '__main__':
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
                 LibraryService.add_customer(info, customers)
-                print("Customer  {0} added ".format(info.id))
+                print("Customer  {0} added ".format(info.customer_id))
             if cmd == Command.REMOVE_CUSTOMER:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
-                index = LibraryService.find_customer(info.id, customers)
+                index = LibraryService.find_customer(info.customer_id, customers)
                 if index != -1:
                     LibraryService.remove_customer(index, customers)
-                    hash_mapper.remove_customer(info.id)
-                    print("Customer {0} deleted ".format(info.id))
+                    hash_mapper.remove_customer(info.customer_id)
+                    print("Customer {0} deleted ".format(info.customer_id))
                 else:
-                    print("Customer {0} is not exists".format(info.id))
+                    print("Customer {0} is not exists".format(info.customer_id))
         if cmd == Command.QUERY:
             query_data, cmd = Parser.parse_query(data[0], data[1])
             if cmd == Command.SELECT_BOOKS:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
                 print_input("Customer {0} hold the next books".format(data[1]), " ")
-                LibraryService.select_books(query_data, hash_mapper.customer_books())
-            if cmd == Command.SELECT_SUBSCRIPTION:
+                LibraryService.select_books(query_data, hash_mapper.customer_books)
+            if cmd == Command.SELECT_CUSTOMER:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
                 print_input("The book {0} hold  Customer".format(data[1]), " ")
-                LibraryService.select_customer(query_data, hash_mapper.book_customer())
+                LibraryService.select_customer(query_data, hash_mapper.book_customer)
             if cmd == Command.MAX_BOOKS_HOLDERS:
                 print_input(cmd.name, " ")
                 print_input(input_str, "\n")
-                LibraryService.select_max_books(hash_mapper.customer_books())
+                max_books_customer = LibraryService.select_max_books(hash_mapper.customer_books)
+                print_input("List of customer who hold max count of books", "\n")
+                print_data(max_books_customer)
         if cmd == Command.EXIT:
             break
